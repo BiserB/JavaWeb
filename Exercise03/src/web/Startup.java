@@ -1,12 +1,10 @@
 package web;
 
-import org.omg.CORBA.Request;
 import web.contracts.HttpRequest;
 import web.contracts.HttpResponse;
 
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+
 
 public class Startup {
 
@@ -16,21 +14,20 @@ public class Startup {
 
         RequestParser requestParser = new RequestParser(webServer);
 
-        ResponseBuilder responseBuilder = new ResponseBuilder(webServer);
-
         HttpRequest request = requestParser.parse();
 
-        String cookieArgs = request.getHeaders().get("Cookie");
+        HashMap<String, String> cookies = request.getCookies();
 
-        String[] pairs = cookieArgs.split(";");
+        if (cookies.size() == 0){
 
-        for (String pair: pairs) {
+            System.out.println("No cookies");
+        }
+        else{
 
-            String[] splitted = pair.trim().split("=");
-            String key = splitted[0];
-            String value = splitted[1];
+            for (String name: cookies.keySet()) {
 
-            System.out.printf("%s <-> %s%s", key, value, System.lineSeparator());
+                System.out.println(name + " <-> " + cookies.get(name));
+            }
         }
     }
 }

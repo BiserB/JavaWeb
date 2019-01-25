@@ -2,8 +2,8 @@ package web;
 
 import web.contracts.HttpRequest;
 import web.contracts.HttpResponse;
-
 import java.util.*;
+
 
 public class ResponseBuilder {
 
@@ -24,7 +24,7 @@ public class ResponseBuilder {
             throw new IllegalArgumentException("Invalid request");
         }
 
-        HttpResponse response = new BasicHttpResponse();
+        HttpResponse response = new BasicHttpResponse(request.getProtocol());
 
         Set<String> keys = request.getHeaders().keySet();
 
@@ -96,7 +96,6 @@ public class ResponseBuilder {
                                                         name, value1, key2, value2, key3, value3);
 
         return result;
-
-        }
+    }
 }
 

@@ -1,18 +1,33 @@
 package web;
 
 import web.contracts.HttpResponse;
-
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
+
 
 public class BasicHttpResponse implements HttpResponse {
 
-    private HashMap<String, String> headers;
+    private static final Map<Integer, String> CODES = new HashMap<Integer, String>(){{
+        put(200, "OK");
+        put(400, "Bad Request");
+        put(401, "Unauthorized");
+        put(404, "Not Found");
+    }};
+
+    private String protocol;
     private int statusCode;
+    private HashMap<String, String> headers;
+
     private String content;
 
-    public BasicHttpResponse() {
+    public BasicHttpResponse(String protocol) {
+        this.setProtocol(protocol);
         this.headers = new LinkedHashMap<>();
+    }
+
+    private void setProtocol(String protocol) {
+        this.protocol = protocol;
     }
 
     @Override
@@ -53,23 +68,13 @@ public class BasicHttpResponse implements HttpResponse {
     public String toString(){
 
         StringBuilder result = new StringBuilder();
-        String statusMsg = "OK";
 
-        switch (statusCode){
-            case 404:
-                statusMsg = "Not Found";
-                break;
-            case 401:
-                statusMsg = "Unauthorized";
-                break;
-            case 400:
-                statusMsg = "Bad request";
-                break;
-        }
+        String statusMsg = CODES.get(statusCode);
 
-         result.append("HTTP/1.1 " + statusCode + " " + statusMsg + System.lineSeparator());
+         result.append(protocol + " " + statusCode + " " + statusMsg + System.lineSeparator());
 
         for (String key: headers.keySet()) {
+
             result.append(key + ": " + headers.get(key) + System.lineSeparator());
         }
 

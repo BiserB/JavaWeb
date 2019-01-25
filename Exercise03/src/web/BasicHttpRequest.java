@@ -1,23 +1,34 @@
 package web;
 
 import web.contracts.HttpRequest;
-
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class BasicHttpRequest implements HttpRequest {
 
-    String method;
-    String requestUrl;
-    HashMap<String, String> headers;
-    HashMap<String, String> bodyParams;
+    private String protocol;
+    private String method;
+    private String requestUrl;
+    private HashMap<String, String> headers;
+    private HashMap<String, String> cookies;
+    private HashMap<String, String> bodyParams;
 
-
-    public BasicHttpRequest(String method, String requestUrl) {
-        this.method = method;
-        this.requestUrl = requestUrl;
+    public BasicHttpRequest(String protocol, String method, String requestUrl) {
+        this.setProtocol(protocol);
+        this.setMethod(method);
+        this.setRequestUrl(requestUrl);
         this.headers = new LinkedHashMap<>();
+        this.cookies = new LinkedHashMap<>();
         this.bodyParams = new LinkedHashMap<>();
+    }
+
+    @Override
+    public String getProtocol() {
+        return protocol;
+    }
+
+    public void setProtocol(String protocol) {
+        this.protocol = protocol;
     }
 
     @Override
@@ -49,10 +60,32 @@ public class BasicHttpRequest implements HttpRequest {
     }
 
     @Override
+    public HashMap<String, String> getCookies() {
+
+        String cookieHeader = headers.get("Cookie");
+
+        if(cookieHeader != null){
+
+            String[] pairs = cookieHeader.split("; ");
+
+            for (String pair: pairs ) {
+
+                String[] data = pair.trim().split("=");
+
+                String name = data[0];
+                String value = data[1];
+
+                cookies.put(name, value);
+            }
+        }
+
+        return this.cookies;
+    }
+
+    @Override
     public void addHeader(String header, String value) {
         this.headers.put(header, value);
     }
-
 
     @Override
     public void addBodyParameter(String parameter, String value) {
@@ -62,10 +95,5 @@ public class BasicHttpRequest implements HttpRequest {
     @Override
     public HashMap<String, String> getBodyParameters() {
         return new LinkedHashMap<>(this.bodyParams);
-    }
-
-    @Override
-    public boolean isResource() {
-        return false;
     }
 }

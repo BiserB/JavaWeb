@@ -1,7 +1,6 @@
 package web;
 
 import web.contracts.HttpRequest;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -22,6 +21,11 @@ public class RequestParser {
         HttpRequest request = null;
 
         try{
+            //String input = reader.readLine();                         // No input for the paths on server
+
+            //List<String> paths = Arrays.asList(input.split(" "));     // No input for the paths on server
+
+            //webServer.setPaths(paths);                                // No input for the paths on server
 
             String input = reader.readLine();
 
@@ -57,7 +61,7 @@ public class RequestParser {
         String requestUri = requestLine[1];
         String protocol = requestLine[2];
 
-        return new BasicHttpRequest(method, requestUri);
+        return new BasicHttpRequest(protocol, method, requestUri);
     }
 
     private void addHeader(HttpRequest request, String headerLine) {
