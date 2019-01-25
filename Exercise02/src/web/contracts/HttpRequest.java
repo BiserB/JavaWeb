@@ -4,6 +4,8 @@ import java.util.HashMap;
 
 public interface HttpRequest {
 
+    String getProtocol();
+
     HashMap<String, String> getHeaders();
 
     HashMap<String, String> getBodyParameters();
@@ -19,6 +21,4 @@ public interface HttpRequest {
     void addHeader(String header, String value);
 
     void addBodyParameter(String parameter, String value);
-
-    boolean isResource();
 }

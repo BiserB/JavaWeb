@@ -1,11 +1,8 @@
 package web;
 
-import org.omg.CORBA.Request;
 import web.contracts.HttpRequest;
 import web.contracts.HttpResponse;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Startup {
 
