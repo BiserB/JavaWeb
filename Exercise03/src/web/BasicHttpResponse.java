@@ -42,12 +42,13 @@ public class BasicHttpResponse implements HttpResponse {
 
     @Override
     public byte[] getContent() {
-        return new byte[0];
+        return content.getBytes();
     }
 
     @Override
     public byte[] getBytes() {
-        return new byte[0];
+
+        return toString().getBytes();
     }
 
     @Override

@@ -1,8 +1,9 @@
+
+//  Some functions are removed from previous task (Exercise 2)
+
 package web;
 
 import web.contracts.HttpRequest;
-import web.contracts.HttpResponse;
-
 import java.util.HashMap;
 
 
@@ -10,9 +11,7 @@ public class Startup {
 
     public static void main(String[] args) {
 
-        WebServer webServer = new WebServer();
-
-        RequestParser requestParser = new RequestParser(webServer);
+        RequestParser requestParser = new RequestParser();
 
         HttpRequest request = requestParser.parse();
 

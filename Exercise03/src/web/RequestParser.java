@@ -10,23 +10,13 @@ import java.util.List;
 public class RequestParser {
 
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-    private WebServer webServer;
 
-    public RequestParser(WebServer webServer) {
-        this.webServer = webServer;
-    }
 
     public HttpRequest parse() {
 
         HttpRequest request = null;
 
         try{
-            //String input = reader.readLine();                         // No input for the paths on server
-
-            //List<String> paths = Arrays.asList(input.split(" "));     // No input for the paths on server
-
-            //webServer.setPaths(paths);                                // No input for the paths on server
-
             String input = reader.readLine();
 
             request = getRequestLine(input);

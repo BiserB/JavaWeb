@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Cat</title>
+    <style>
+        h1{
+            color: chocolate;
+            font-family: Caladea;
+            text-align: center;
+            background-color: cornsilk;
+            padding: 10px;
+        }
+        p, form{
+            text-align: center;
+            font-size: 18px;
+        }
+
+        input[type=text] {
+            width: 200px;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        input[type=number] {
+            width: 200px;
+            padding: 10px;
+            margin: 8px 0 8px 13px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit] {
+            width: 200px;
+            padding: 10px;
+            margin: 8px 0 8px 54px;
+            background-color: chocolate;
+            color: white;
+        }
+
+    </style>
+
+</head>
+
+<body>
+<h1>Create a Cat!</h1>
+<hr/>
+
+<form action="/cats/create" method="post">
+
+    <div class="form-row">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="cat_name">
+    </div>
+    <div class="form-row">
+        <label for="breed">Breed:</label>
+        <input type="text" id="breed" name="cat_breed">
+    </div>
+    <div class="form-row">
+        <label for="color">Color:</label>
+        <input type="text" id="color" name="cat_color">
+    </div>
+    <div class="form-row">
+        <label for="age">Age:</label>
+        <input type="number" id="age" min="0" max="40" name="cat_age">
+    </div>
+    <div>
+        <input type="submit"  value="Create Cat">
+    </div>
+</form>
+
+<p>
+    <a href="/cats/all">ALL CATS</a>
+</p>
+<p>
+    <a href="/">HOME</a>
+</p>
+
+</body>
+</html>
