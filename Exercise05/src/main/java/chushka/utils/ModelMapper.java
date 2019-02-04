@@ -1,6 +1,5 @@
 package chushka.utils;
 
-public class ModelMapper {
-
+public class ModelMapper extends org.modelmapper.ModelMapper {
 
 }

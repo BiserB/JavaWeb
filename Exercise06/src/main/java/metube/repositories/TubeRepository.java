@@ -5,8 +5,6 @@ import metube.domain.entities.Tube;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
-import java.util.List;
-import java.util.Optional;
 
 
 public class TubeRepository {
@@ -14,22 +12,31 @@ public class TubeRepository {
     private static final String PERSISTENCE_UNIT_NAME = "metube";
     private final EntityManager entityManager;
 
-    public TubeRepository(TubeRepository repository) {
+    public TubeRepository() {
 
         this.entityManager = Persistence
                 .createEntityManagerFactory(PERSISTENCE_UNIT_NAME)
                 .createEntityManager();
     }
 
-    public Optional<Tube> findByName(String name){
+    public Tube findById(String id){
 
-        Optional<List> result = Optional.of(
-                entityManager.createQuery(
-                                "SELECT t FROM tubes t"
-        ).getResultList());
+        Tube tube = entityManager
+                .createQuery("SELECT t FROM tubes t WHERE t.id = :id", Tube.class)
+                .setParameter("id", id)
+                .getSingleResult();
 
+        return tube;
+    }
 
-        return null;
+    public Tube findByName(String name){
+
+        Tube tube = entityManager
+                .createQuery("SELECT t from tubes t WHERE t.name = :name", Tube.class)
+                .setParameter("name", name)
+                .getSingleResult();
+
+        return tube;
     }
 
     Tube save(Tube tube){
@@ -43,13 +50,5 @@ public class TubeRepository {
         return null;
     }
 
-    Tube findById(String id){
 
-        Tube tube = entityManager
-                .createQuery("SELECT t FROM tubes t WHERE t.id = :id", Tube.class)
-                .setParameter("id", id)
-                .getSingleResult();
-
-        return tube;
-    }
 }

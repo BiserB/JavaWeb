@@ -4,11 +4,10 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "tubes")
+@Entity(name = "tubes")
 public class Tube {
 
-    private int id;
+    private String id;
     private String name;
     private String description;
     private String link;
@@ -17,17 +16,15 @@ public class Tube {
     public Tube() {
     }
 
-
-
     @Id
     @GeneratedValue(generator = "uuid-string")
     @GenericGenerator(name = "uuid-string", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "id", nullable = false)
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

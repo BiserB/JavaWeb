@@ -1,6 +1,14 @@
 package chushka.entities.enums;
 
-public enum  Type {
+public enum Type {
 
-    Food, Domestic, Health, Cosmetic
+    FOOD,
+    DOMESTIC,
+    HEALTH,
+    COSMETIC;
+
+    @Override
+    public String toString() {
+        return (this.name().substring(0,1) + this.name().substring(1).toLowerCase());
+    }
 }

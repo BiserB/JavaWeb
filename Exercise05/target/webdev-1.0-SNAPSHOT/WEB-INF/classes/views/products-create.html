@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products create</title>
+    <style>
+        body{
+            background-color: rgb(233, 236, 239);
+            font-family: Verdana, sans-serif;
+        }
+        h2{
+            font-weight: 400;
+            text-align: center;
+            padding: 10px;
+        }
+        form{
+            margin-left: auto;
+            margin-right: auto;
+            width: 300px;
+            padding: 30px;
+        }
+        hr.style1 {
+            border: 1px double darkgray;
+            padding: 0 25px 0 25px ;
+        }
+        .button{
+            border: none;
+            border-radius: 5px;
+            background: rgb(23,162,184);
+            color: white;
+            padding: 10px 15px;
+            margin-top: 15px;
+            font-size: 16px;
+            text-decoration: none;
+        }
+        .button:hover{
+            background: darkblue;
+            cursor: pointer;
+        }
+        input[type=text], select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0 16px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        textarea{
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0 16px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+            resize: none;
+        }
+        .center{
+            text-align: center;
+            margin-top: 20px;
+        }
+        select{
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Create new product</h2>
+    <hr class="style1"/>
+
+        <form action="/products/create" method="post">
+
+            <label for="name">Name:</label>
+            <input type="text" minlength="3" maxlength="30" id="name" name="name" required>
+
+            <label for="name">Description:</label>
+            <textarea id="description" name="description" placeholder="Enter description" cols="30" rows="4" required></textarea>
+
+            <div>
+                <label for="type">Type:</label>
+                <select id="type" name="type" required>
+                    <option value="">Choose type...</option>
+                    {{{opt}}}
+                </select>
+            </div>
+
+            <div class="center">
+                <input class="button" type="submit"  value="Create Product">
+            </div>
+
+        </form>
+
+    <hr class="style1"/>
+
+    <div class="center">
+        <a href="/">Back to home page</a>
+    </div>
+</body>
+</html>
