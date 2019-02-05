@@ -8,7 +8,7 @@ import java.util.List;
 
 public class TubeRepository {
 
-    private static final String persistenceUnitName = "metube";
+    private static final String persistenceUnitName = "workshop";
     private EntityManager entityManager;
 
     public TubeRepository() {

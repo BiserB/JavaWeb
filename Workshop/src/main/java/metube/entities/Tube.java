@@ -14,13 +14,22 @@ public class Tube extends BaseEntity {
     private long views;
     private User uploader;
 
-    @Column(name = "title")
+    @Column(name = "title", nullable = false)
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    @Column(name = "author", nullable = false)
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     @Column(name = "description")
@@ -32,7 +41,7 @@ public class Tube extends BaseEntity {
         this.description = description;
     }
 
-    @Column(name = "link")
+    @Column(name = "link", nullable = false)
     public String getLink() {
         return link;
     }
@@ -41,7 +50,17 @@ public class Tube extends BaseEntity {
         this.link = link;
     }
 
-    @ManyToOne(targetEntity = User.class)
+    @Column(name = "views")
+    public long getViews() {
+        return views;
+    }
+
+    public void setViews(long views) {
+        this.views = views;
+    }
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "uploader_id", referencedColumnName = "id")
     public User getUploader() {
         return uploader;
     }

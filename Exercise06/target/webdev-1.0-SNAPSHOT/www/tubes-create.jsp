@@ -1,9 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html lang="en">
-<c:import url="partial/head.jsp"/>
-
+<html>
+<head>
+    <c:import url="partial/head.jsp"/>
+</head>
 <body>
 <div class="wrapper">
 
@@ -21,7 +21,7 @@
 
             <div>
                 <div class="center"><label for="title">Title:</label></div>
-                <input type="text" minlength="3" maxlength="30" id="title" name="title" requred>
+                <input type="text" minlength="3" maxlength="30" id="title" name="title" required>
             </div>
 
             <div>
@@ -40,11 +40,10 @@
             </div>
 
             <div class="center">
-                <input class="button" type="submit"  value="Create Tube">
+                <input class="button" type="submit"  value="Create Tube"/>
             </div>
         </form>
     </div>
-
 
     <hr class="style1"/>
 

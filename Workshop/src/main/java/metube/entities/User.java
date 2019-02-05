@@ -43,7 +43,7 @@ public class User extends BaseEntity {
         this.email = email;
     }
 
-    @OneToMany(targetEntity = Tube.class)
+    @OneToMany(mappedBy = "uploader")
     public List<Tube> getTubes() {
         return tubes;
     }
